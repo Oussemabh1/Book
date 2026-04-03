@@ -1,14 +1,13 @@
 const yup=require('yup');
 
 
-async function validateUser(req, res,next) {
+async function validateBook(req, res,next) {
     try {
         
         const schema =yup.object().shape({
-        name: yup.string().matches(/^[A-Z][A-za-z]/).required(),
-        email:yup.string().matches(/^[A-Za-z]+@esprit.tn+$/, "l'email est avec @espit.tn").required(),
-        phone:yup.string().matches(/^[0-9]{8}$/).required(),
-        password:yup.number().required(), //.matches(/^[A-Za-z0-9*,-]/
+        title: yup.string().required(),
+        price:yup.number().min(0).required(), 
+        stock:yup.number().min(0).required(),//.matches(/^[A-Za-z0-9*,-]/
         });
         await schema.validate(req.body);
         next();
@@ -34,4 +33,4 @@ async function validatePassword(req, res,next) {
     }
     
 } 
-module.exports={validateUser,validatePassword}
+module.exports={validateBook,validatePassword}
