@@ -1,0 +1,36 @@
+<html>
+    <head>
+<script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+    </body>
+    <script>
+       
+
+        //connection au socket
+        const socket=io.connect()
+
+
+        //msg conection 
+        socket.on('messageConnection',(data)=>{
+            console.log(data)
+            p=document.createElement("p")
+            p.innerText=data
+            document.body.append(p)
+
+        })
+
+         
+        //alert indisponible
+        
+        socket.on("vehiculeAlert",(data)=>{
+          alert(data)
+        })
+        
+
+
+
+       
+
+    </script>
+</html>

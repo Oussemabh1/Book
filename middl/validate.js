@@ -1,13 +1,14 @@
 const yup=require('yup');
 
 
-async function validateBook(req, res,next) {
+//dima thabet fel les parentheses 
+
+async function validateVehicule(req, res,next) {
     try {
         
         const schema =yup.object().shape({
-        title: yup.string().required(),
-        price:yup.number().min(0).required(), 
-        stock:yup.number().min(0).required(),//.matches(/^[A-Za-z0-9*,-]/
+        Year: yup.number().min(2000).required(),
+        PricePerDay:yup.number().positive().required()
         });
         await schema.validate(req.body);
         next();
@@ -18,19 +19,6 @@ async function validateBook(req, res,next) {
     
 
 } 
-async function validatePassword(req, res,next) {
-    try {
-        
-        const schema =yup.object().shape({
-        
-        password:yup.number().required(), //.matches(/^[A-Za-z0-9*,-]/
-        });
-        await schema.validate(req.body);
-        next();
 
-    } catch (error) {
-        res.send(error)
-    }
-    
-} 
-module.exports={validateBook,validatePassword}
+
+module.exports={validateVehicule}
